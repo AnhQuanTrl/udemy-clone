@@ -22,18 +22,6 @@ DROP PROCEDURE IF EXISTS addResource;
 DROP PROCEDURE IF EXISTS enrollCourse;
 
 DELIMITER $$
--- CREATE PROCEDURE insertUser(
--- 	IN em VARCHAR(256),
---     IN pw VARCHAR(256),
---     IN fname VARCHAR(128),
---     in lname VARCHAR(128)
--- )
--- BEGIN
--- 	INSERT INTO tbl_USER(email, password, first_name, last_name)
--- 	VALUES (em, pw, fname, lname);
--- END
--- $$
-
 CREATE PROCEDURE loginUser(
 	arg_email VARCHAR(256),
     arg_password VARCHAR(256)
@@ -43,8 +31,8 @@ BEGIN
     FROM tbl_USER
     WHERE email=arg_email AND passowrd=SHA2(arg_password,256);
 END
-$$
 
+$$
 CREATE PROCEDURE insertCourse(
 	IN arg_main_title VARCHAR(256),
     IN arg_sub_title VARCHAR(256),
@@ -87,52 +75,8 @@ BEGIN
         FROM topic_value;
 	END IF;
 END
-$$
 
--- CREATE PROCEDURE message(
--- 	arg_from_id INT UNSIGNED,
---     arg_to_id INT UNSIGNED,
---     arg_content LONGTEXT
--- )
--- BEGIN 
--- 	INSERT INTO tbl_MESSAGE(from_id, to_id, content)
---     VALUES (arg_from_id, arg_to_id, arg_content);
--- END
--- $$
--- CREATE PROCEDURE insertTeacher(
--- 	arg_instructor_id INT UNSIGNED,
---     arg_course_id INT UNSIGNED,
---     arg_permission BIT(8),
---     arg_share DECIMAL(5,2)
--- )
--- 	INSERT INTO tbl_TEACH(instructor_id, course_id, permission)
---     VALUES (arg_instructor_id, arg_course_id, arg_permssion);
--- END
 $$
--- CREATE PROCEDURE insertAnnouncement(
---     arg_course_id INT UNSIGNED,
--- 	arg_instructor_id INT UNSIGNED,
---     arg_content TEXT
--- )
--- BEGIN
--- 	INSERT INTO tbl_ANNOUNCEMENT(course_id, instructor_id, content)
---     VALUES (arg_course_id, arg_instructor_id, arg_content);
--- END
--- $$
-
--- CREATE PROCEDURE insertSection(
--- 	arg_course_id INT UNSIGNED,
---     arg_section_name VARCHAR(256)
--- )
--- BEGIN
--- 	DECLARE arg_section_order INT UNSIGNED;
--- 	SELECT COUNT(*)+1 INTO arg_section_order
--- 	FROM tbl_SECTION
--- 	WHERE course_id=arg_course_id;
--- 	INSERT INTO tbl_SECTION(course_id, name, section_order)
--- 	VALUES (arg_course_id, arg_section_name, arg_section_order);
--- END
--- $$
 CREATE PROCEDURE insertItem(
 	arg_course_id INT UNSIGNED,
     arg_name VARCHAR(256)
@@ -141,6 +85,7 @@ BEGIN
 	INSERT INTO tbl_ITEM(course_id, name)
     VALUES (arg_course_id, arg_name);
 END
+
 $$
 CREATE PROCEDURE insertLecture(
 	arg_course_id INT UNSIGNED,
@@ -151,6 +96,7 @@ BEGIN
     INSERT INTO tbl_LECTURE(item_id, course_id)
     VALUES (LAST_INSERT_ID(), arg_course_id);
 END
+
 $$
 CREATE PROCEDURE insertVideo(
 	arg_course_id INT UNSIGNED,
@@ -164,6 +110,7 @@ BEGIN
     INSERT INTO tbl_VIDEO
     VALUES (LAST_INSERT_ID(), arg_course_id, IFNULL(previewable, DEFAULT(is_previewable)), arg_duration, arg_url);
 END
+
 $$
 CREATE PROCEDURE addCaption(
 	arg_course_id INT UNSIGNED,
@@ -184,6 +131,7 @@ BEGIN
     PREPARE stmt FROM @sql;
     EXECUTE stmt;
 END
+
 $$
 CREATE PROCEDURE addResource(
 	arg_course_id INT UNSIGNED,
@@ -204,6 +152,7 @@ BEGIN
     PREPARE stmt FROM @sql;
     EXECUTE stmt;
 END
+
 $$
 CREATE PROCEDURE insertVideoSlide(
 	arg_course_id INT UNSIGNED,
@@ -219,6 +168,7 @@ BEGIN
     VALUES (LAST_INSERT_ID(), arg_course_id, arg_slide_url, arg_sync_url, 
 		arg_video_url, IFNULL(arg_duration, DEFAULT(duration)));
 END
+
 $$
 CREATE PROCEDURE insertArticle(
 	arg_course_id INT UNSIGNED,
@@ -230,6 +180,7 @@ BEGIN
     INSERT INTO tbl_ARTICLE
     VALUES (LAST_INSERT_ID(), arg_course_id, arg_content);
 END
+
 $$
 CREATE PROCEDURE insertCodingExercise(
 	arg_course_id INT UNSIGNED,
@@ -243,6 +194,7 @@ BEGIN
     INSERT INTO tbl_CODING_EXERCISE
     VALUES (LAST_INSERT_ID(), arg_course_id, arg_initial_code, arg_test_code, arg_prog_language);
 END
+
 $$
 CREATE PROCEDURE insertPTQ(
 	arg_course_id INT UNSIGNED,
@@ -256,6 +208,7 @@ BEGIN
     INSERT INTO tbl_PTQ
     VALUES (LAST_INSERT_ID(), arg_course_id, arg_minimum_score, arg_is_randomize, arg_description);
 END
+
 $$
 CREATE PROCEDURE insertQuiz(
 	arg_item_id INT UNSIGNED,
@@ -280,47 +233,8 @@ BEGIN
 		EXECUTE stmt;
     COMMIT;
 END
-$$
-CREATE PROCEDURE checkPrimaryCoupon()
-BEGIN
-	DECLARE v_done BOOL DEFAULT FALSE;
-    DECLARE v_coupon_code CHAR(10);
-	DECLARE cursorForCoupon CURSOR FOR 
-    SELECT 
-		coupon_code
-	FROM
-		tbl_COUPON
-	WHERE 
-		is_primary=TRUE AND expired_date > NOW();
-	
-    DECLARE CONTINUE HANDLER FOR NOT FOUND SET v_done=TRUE;
-	OPEN cursorForCoupon;
-	START TRANSACTION;
-	read_loop: LOOP
-		FETCH cursorForCoupon INTO v_coupon_code;
-        IF v_done THEN
-			LEAVE read_loop;
-		END IF;
-        INSERT IGNORE INTO tbl_DISCOUNT
-        SELECT course_id, v_coupon_code
-        FROM tbl_COURSE;
-	END LOOP;
-    COMMIT;
-    CLOSE cursorForCoupon;
-END
-$$
 
-CREATE EVENT IF NOT EXISTS expiredEvent
-ON SCHEDULE
-EVERY 30 SECOND
-COMMENT 'Coupon expired'
-DO
-BEGIN
-	CALL checkPrimaryCoupon();
-	DELETE FROM tbl_COUPON WHERE expired_date < NOW();
-END
 $$
-
 CREATE PROCEDURE enrollCourse(
 	arg_user_id INT UNSIGNED,
     arg_course_id INT UNSIGNED,

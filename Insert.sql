@@ -433,42 +433,42 @@ CALL insertVideo(1, "Third including face picture.", FALSE, 15.00, "http://vazqu
 
 CALL insertVideo(1, "White must able.", FALSE, 17.30, "http://harris.biz/");
 
-CALL insertVideo(1, "Eat hold fast how heart.", FALSE, 25.00, "http://www.ramirez.com/");
+CALL insertVideo(2, "Eat hold fast how heart.", FALSE, 25.00, "http://www.ramirez.com/");
 
-CALL insertVideo(1, "So event water religious.", FALSE, 10.00, "https://www.stark.com/");
+CALL insertVideo(2, "So event water religious.", FALSE, 10.00, "https://www.stark.com/");
 
-CALL insertVideo(1, "At trade often reality.", FALSE, 12.00, "https://www.anderson.com/");
+CALL insertVideo(3, "At trade often reality.", FALSE, 12.00, "https://www.anderson.com/");
 
-CALL insertVideo(1, "This including know shoulder.", FALSE, 7.00, "https://www.ray.com/");
+CALL insertVideo(3, "This including know shoulder.", FALSE, 7.00, "https://www.ray.com/");
 
-CALL insertVideo(1, "Former play member cold.", FALSE, 8.00, "https://chen-goodwin.com/");
+CALL insertVideo(4, "Former play member cold.", FALSE, 8.00, "https://chen-goodwin.com/");
 
-CALL insertVideo(1, "News show end prevent let.", FALSE, 4.00, "https://williams.com/");
+CALL insertVideo(5, "News show end prevent let.", FALSE, 4.00, "https://williams.com/");
 
-CALL insertVideo(1, "Value leg wonder idea per when.", FALSE, 16.00, "https://www.harrington.com/");
+CALL insertVideo(5, "Value leg wonder idea per when.", FALSE, 16.00, "https://www.harrington.com/");
 
 -- SELECT * FROM tbl_VIDEO ORDER BY item_id;
 
 -- 													----- CAPTION -----
 CALL addCaption(1, "News anyone force compare.", "('English', 'https://www.odom-jones.info/')");
 
-CALL addCaption(1, "News anyone force compare.", "('French', 'https://www.crosby-walker.info/')");
+CALL addCaption(1, "Third including face picture.", "('French', 'https://www.crosby-walker.info/')");
 
-CALL addCaption(1, "News anyone force compare.", "('German', 'https://ortiz.net/')");
+CALL addCaption(1, "White must able.", "('German', 'https://ortiz.net/')");
 
-CALL addCaption(1, "White must able.", "('Italian', 'https://burgess.com/')");
+CALL addCaption(2, "Eat hold fast how heart.", "('Italian', 'https://burgess.com/')");
 
-CALL addCaption(1, "White must able.", "('Polish', 'http://www.myers.biz/')");
+CALL addCaption(2, "So event water religious.", "('Polish', 'http://www.myers.biz/')");
 
-CALL addCaption(1, "White must able.", "('Portuguese', 'http://www.peters.biz/')");
+CALL addCaption(3, "At trade often reality.", "('Portuguese', 'http://www.peters.biz/')");
 
-CALL addCaption(1, "Eat hold fast how heart.", "('Spanish', 'http://www.torres.com/')");
+CALL addCaption(3, "This including know shoulder.", "('Spanish', 'http://www.torres.com/')");
 
-CALL addCaption(1, "Value leg wonder idea per when.", "('Romanian', 'http://townsend-watson.com/')");
+CALL addCaption(4, "Former play member cold.", "('Romanian', 'http://townsend-watson.com/')");
 
-CALL addCaption(1, "Value leg wonder idea per when.", "('Turkish', 'https://www.hernandez.com/')");
+CALL addCaption(5, "News show end prevent let.", "('Turkish', 'https://www.hernandez.com/')");
 
-CALL addCaption(1, "Value leg wonder idea per when.", "('Indonesian', 'http://www.fowler.info/')");
+CALL addCaption(5, "Value leg wonder idea per when.", "('Indonesian', 'http://www.fowler.info/')");
 
 -- SELECT * FROM tbl_CAPTION ORDER BY item_id;
 
@@ -596,21 +596,21 @@ INSERT INTO tbl_SECTION(course_id, name, section_order) VALUES (1, "Smith Inc", 
 
 INSERT INTO tbl_SECTION(course_id, name, section_order) VALUES (1, "Brooks-Lopez", 2);
 
-INSERT INTO tbl_SECTION(course_id, name, section_order) VALUES (1, "Castaneda-Wood", 3);
+INSERT INTO tbl_SECTION(course_id, name, section_order) VALUES (2, "Castaneda-Wood", 1);
 
-INSERT INTO tbl_SECTION(course_id, name, section_order) VALUES (1, "Chandler Inc", 4);
+INSERT INTO tbl_SECTION(course_id, name, section_order) VALUES (2, "Chandler Inc", 2);
 
-INSERT INTO tbl_SECTION(course_id, name, section_order) VALUES (1, "Johnson, Brown and Gardner", 5);
+INSERT INTO tbl_SECTION(course_id, name, section_order) VALUES (3, "Johnson, Brown and Gardner", 1);
 
-INSERT INTO tbl_SECTION(course_id, name, section_order) VALUES (1, "Carlson-Smith", 6);
+INSERT INTO tbl_SECTION(course_id, name, section_order) VALUES (3, "Carlson-Smith", 2);
 
-INSERT INTO tbl_SECTION(course_id, name, section_order) VALUES (1, "Lawrence Ltd", 7);
+INSERT INTO tbl_SECTION(course_id, name, section_order) VALUES (4, "Lawrence Ltd", 1);
 
-INSERT INTO tbl_SECTION(course_id, name, section_order) VALUES (1, "Lee Ltd", 8);
+INSERT INTO tbl_SECTION(course_id, name, section_order) VALUES (4, "Lee Ltd", 2);
 
-INSERT INTO tbl_SECTION(course_id, name, section_order) VALUES (1, "Riddle, Baker and Young", 9);
+INSERT INTO tbl_SECTION(course_id, name, section_order) VALUES (5, "Riddle, Baker and Young", 1);
 
-INSERT INTO tbl_SECTION(course_id, name, section_order) VALUES (1, "Cummings-Castillo", 10);
+INSERT INTO tbl_SECTION(course_id, name, section_order) VALUES (5, "Cummings-Castillo", 2);
 
 -- SELECT * FROM tbl_SECTION ORDER BY section_id;
 
@@ -619,21 +619,21 @@ INSERT INTO tbl_COMPOSE(item_id, course_id_item, section_id, course_id_section, 
 
 INSERT INTO tbl_COMPOSE(item_id, course_id_item, section_id, course_id_section, item_order)	VALUES (2, 1, 1, 1, 2);
 
-INSERT INTO tbl_COMPOSE(item_id, course_id_item, section_id, course_id_section, item_order)	VALUES (3, 1, 1, 1, 3);
+INSERT INTO tbl_COMPOSE(item_id, course_id_item, section_id, course_id_section, item_order)	VALUES (3, 1, 2, 1, 1);
 
-INSERT INTO tbl_COMPOSE(item_id, course_id_item, section_id, course_id_section, item_order)	VALUES (4, 1, 2, 1, 1);
+INSERT INTO tbl_COMPOSE(item_id, course_id_item, section_id, course_id_section, item_order)	VALUES (4, 2, 3, 2, 1);
 
-INSERT INTO tbl_COMPOSE(item_id, course_id_item, section_id, course_id_section, item_order)	VALUES (5, 1, 2, 1, 2);
+INSERT INTO tbl_COMPOSE(item_id, course_id_item, section_id, course_id_section, item_order)	VALUES (5, 2, 4, 2, 1);
 
-INSERT INTO tbl_COMPOSE(item_id, course_id_item, section_id, course_id_section, item_order)	VALUES (6, 1, 3, 1, 1);
+INSERT INTO tbl_COMPOSE(item_id, course_id_item, section_id, course_id_section, item_order)	VALUES (6, 3, 5, 3, 1);
 
-INSERT INTO tbl_COMPOSE(item_id, course_id_item, section_id, course_id_section, item_order)	VALUES (7, 1, 3, 1, 2);
+INSERT INTO tbl_COMPOSE(item_id, course_id_item, section_id, course_id_section, item_order)	VALUES (7, 3, 5, 3, 2);
 
-INSERT INTO tbl_COMPOSE(item_id, course_id_item, section_id, course_id_section, item_order)	VALUES (8, 1, 3, 1, 3);
+INSERT INTO tbl_COMPOSE(item_id, course_id_item, section_id, course_id_section, item_order)	VALUES (8, 4, 7, 4, 1);
 
-INSERT INTO tbl_COMPOSE(item_id, course_id_item, section_id, course_id_section, item_order)	VALUES (9, 1, 3, 1, 4);
+INSERT INTO tbl_COMPOSE(item_id, course_id_item, section_id, course_id_section, item_order)	VALUES (9, 5, 9, 5, 1);
 
-INSERT INTO tbl_COMPOSE(item_id, course_id_item, section_id, course_id_section, item_order)	VALUES (10, 1, 4, 1, 1);
+INSERT INTO tbl_COMPOSE(item_id, course_id_item, section_id, course_id_section, item_order)	VALUES (10, 5, 10, 5, 1);
 
 -- SELECT * FROM tbl_COMPOSE ORDER BY item_id;
 
@@ -787,25 +787,25 @@ INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (10, 5, "Keep devel
 -- SELECT * FROM tbl_ANSWER ORDER BY id;
 
 -- 													===== CONTEXT =====
-INSERT INTO tbl_CONTEXT(question_id, item_id, course_id) VALUES (1, 2, 1);
+INSERT INTO tbl_CONTEXT(question_id, item_id, course_id) VALUES (1, 1, 1);
 
 INSERT INTO tbl_CONTEXT(question_id, item_id, course_id) VALUES (2, 2, 1);
 
 INSERT INTO tbl_CONTEXT(question_id, item_id, course_id) VALUES (3, 2, 1);
 
-INSERT INTO tbl_CONTEXT(question_id, item_id, course_id) VALUES (4, 4, 1);
+INSERT INTO tbl_CONTEXT(question_id, item_id, course_id) VALUES (4, 4, 2);
 
-INSERT INTO tbl_CONTEXT(question_id, item_id, course_id) VALUES (5, 5, 1);
+INSERT INTO tbl_CONTEXT(question_id, item_id, course_id) VALUES (5, 5, 2);
 
-INSERT INTO tbl_CONTEXT(question_id, item_id, course_id) VALUES (6, 6, 1);
+INSERT INTO tbl_CONTEXT(question_id, item_id, course_id) VALUES (6, 6, 3);
 
-INSERT INTO tbl_CONTEXT(question_id, item_id, course_id) VALUES (7, 7, 1);
+INSERT INTO tbl_CONTEXT(question_id, item_id, course_id) VALUES (7, 7, 3);
 
-INSERT INTO tbl_CONTEXT(question_id, item_id, course_id) VALUES (8, 8, 1);
+INSERT INTO tbl_CONTEXT(question_id, item_id, course_id) VALUES (8, 8, 4);
 
-INSERT INTO tbl_CONTEXT(question_id, item_id, course_id) VALUES (9, 9, 1);
+INSERT INTO tbl_CONTEXT(question_id, item_id, course_id) VALUES (9, 9, 5);
 
-INSERT INTO tbl_CONTEXT(question_id, item_id, course_id) VALUES (10, 10, 1);
+INSERT INTO tbl_CONTEXT(question_id, item_id, course_id) VALUES (10, 10, 5);
 
 -- SELECT * FROM tbl_CONTEXT ORDER BY question_id;
 
@@ -821,6 +821,8 @@ INSERT INTO tbl_SHOPPING_CART(user_id) VALUES (4);
 INSERT INTO tbl_SHOPPING_CART(user_id) VALUES (5);
 
 INSERT INTO tbl_SHOPPING_CART(user_id) VALUES (6);
+
+INSERT INTO tbl_SHOPPING_CART(user_id) VALUES (7);
 
 INSERT INTO tbl_SHOPPING_CART(user_id) VALUES (7);
 
@@ -849,9 +851,15 @@ INSERT INTO tbl_SHOPPING_CART_COURSE(shopping_cart_id, course_id) VALUES (6, 2);
 
 INSERT INTO tbl_SHOPPING_CART_COURSE(shopping_cart_id, course_id) VALUES (6, 3);
 
-INSERT INTO tbl_SHOPPING_CART_COURSE(shopping_cart_id, course_id) VALUES (7, 8);
+INSERT INTO tbl_SHOPPING_CART_COURSE(shopping_cart_id, course_id) VALUES (7, 4);
 
-INSERT INTO tbl_SHOPPING_CART_COURSE(shopping_cart_id, course_id) VALUES (8, 8);
+INSERT INTO tbl_SHOPPING_CART_COURSE(shopping_cart_id, course_id) VALUES (7, 5);
+
+INSERT INTO tbl_SHOPPING_CART_COURSE(shopping_cart_id, course_id) VALUES (7, 6);
+
+INSERT INTO tbl_SHOPPING_CART_COURSE(shopping_cart_id, course_id) VALUES (8, 1);
+
+INSERT INTO tbl_SHOPPING_CART_COURSE(shopping_cart_id, course_id) VALUES (8, 2);
 
 INSERT INTO tbl_SHOPPING_CART_COURSE(shopping_cart_id, course_id) VALUES (9, 10);
 

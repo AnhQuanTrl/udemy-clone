@@ -33,7 +33,7 @@ FROM tbl_COURSE AS tc, tbl_ENROLL AS te, tbl_USER AS tu
 WHERE 
 	te.user_id = 6
 	AND tc.id = te.course_id
-	AND tu.id = tc.owner_id
+	AND tu.id = tc.owner_id;
 
 -- Liet ke toan bo COURSE da duoc them vao SHOPPING_CART cua USER co id = 6												$$$ (5)
 SELECT tc.*
@@ -42,7 +42,7 @@ WHERE
 	tu.id = 6
 	AND tsc.user_id = tu.id
 	AND tscc.shopping_cart_id = tsc.id
-	AND tc.id = tscc.course_id
+	AND tc.id = tscc.course_id;
 
 -- Liet ke nhung thong tin can thiet cua nhung REVIEW co rating = 5 trong COURSE co id = 1								$$$ (6)
 SELECT te.comment, tu.first_name, tu.last_name
@@ -184,7 +184,7 @@ WHERE
 
 -- 																	AGGREATE QUERY
 
--- Liet ke 10 COURSE co rating cao nhat sap xep theo rating 
+-- Liet ke 10 COURSE co rating cao nhat sap xep theo rating 															$$$ (1)
 SELECT c.id, AVG(rating) as average_rating
 FROM tbl_COURSE c, tbl_ENROLL e
 WHERE c.id = e.course_id
@@ -192,18 +192,41 @@ GROUP BY c.id
 ORDER BY average_rating
 LIMIT 10;
 
--- Liet ke 10 TOPIC thinh hanh nhat trong 1 SUBCATEGORY "Math" sap xep theo do thinh hanh
+-- Liet ke 10 TOPIC thinh hanh nhat trong 1 SUBCATEGORY "Web Development" sap xep theo do thinh hanh					$$$ (2)
 SELECT t.topic, COUNT(*) AS popularity
 FROM tbl_COURSE_TOPIC t, tbl_ENROLL e
-WHERE t.course_id = e.course_id AND t.course_id IN (SELECT c.id FROM tbl_COURSE c, tbl_SUBCATEGORY s WHERE c.sub_category_id = s.id AND c.name="Math")
+WHERE 
+	t.course_id = e.course_id 
+	AND t.course_id IN (
+		SELECT c.id FROM tbl_COURSE c, tbl_SUBCATEGORY s WHERE c.sub_category_id = s.id AND s.name="Web Development"
+	)
 GROUP BY t.topic
 ORDER BY popularity
 LIMIT 10;
 
--- find the total number of distinct course student in each category $$$
+-- Lay so luong STUDENT da ENROLL vao cac COURSE thuoc cac CATEGORY tuong ung 											$$$ (3)
 SELECT cate.name, COUNT(DISTINCT e.user_id)
 FROM tbl_COURSE c, tbl_SUBCATEGORY s, tbl_ENROLL e, tbl_CATEGORY cate
-WHERE s.category_id=cate.id AND c.sub_category_id=s.id AND e.course_id=c.id
+WHERE 
+	s.category_id=cate.id 
+	AND c.sub_category_id=s.id 
+	AND e.course_id=c.id
 GROUP BY cate.name;
 
--- Tim tong thoi gian DURATION cua toan bo COURSE trong SUBCATEGORY 'Web Development'
+-- Tinh tong thoi gian DURATION cua tung COURSE nam trong SUBCATEGORY co name = "Finance"								$$$ (4)												$$$ (4)
+SELECT tc.id, tc.main_title, SUM(tv.duration)
+FROM tbl_VIDEO AS tv, tbl_COURSE AS tc, tbl_SUBCATEGORY AS ts
+WHERE 
+	ts.name = "Finance"
+	AND tc.sub_category_id = ts.id
+	AND tv.course_id = tc.id
+GROUP BY tc.id;
+
+-- Tinh tong price cua cac SHOPPING_CART_COURSE co trong tung SHOPPING_CART cua USER co id = 7							$$$ (5)
+SELECT tsc.id, SUM(tc.price)
+FROM tbl_COURSE AS tc, tbl_SHOPPING_CART_COURSE AS tscc, tbl_SHOPPING_CART AS tsc
+WHERE 
+	tsc.user_id = 7
+	AND tscc.shopping_cart_id = tsc.id
+	AND tc.id = tscc.course_id
+GROUP BY tsc.id;
