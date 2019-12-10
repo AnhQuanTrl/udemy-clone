@@ -20,20 +20,8 @@ DROP PROCEDURE IF EXISTS checkPrimaryCoupon;
 DROP PROCEDURE IF EXISTS loginUser;
 DROP PROCEDURE IF EXISTS addResource;
 DROP PROCEDURE IF EXISTS enrollCourse;
-DROP EVENT IF EXISTS expiredEvent;
-DELIMITER $$
--- CREATE PROCEDURE insertUser(
--- 	IN em VARCHAR(256),
---     IN pw VARCHAR(256),
---     IN fname VARCHAR(128),
---     in lname VARCHAR(128)
--- )
--- BEGIN
--- 	INSERT INTO tbl_USER(email, password, first_name, last_name)
--- 	VALUES (em, pw, fname, lname);
--- END
--- $$
 
+DELIMITER $$
 CREATE PROCEDURE loginUser(
 	arg_email VARCHAR(256),
     arg_password VARCHAR(256)
@@ -43,8 +31,8 @@ BEGIN
     FROM tbl_USER
     WHERE email=arg_email AND passowrd=SHA2(arg_password,256);
 END
-$$
 
+$$
 CREATE PROCEDURE insertCourse(
 	IN arg_main_title VARCHAR(256),
     IN arg_sub_title VARCHAR(256),
@@ -77,7 +65,7 @@ BEGIN
 	VALUES (arg_owner_id, last_course_id, DEFAULT(tbl_TEACH.permission), DEFAULT(tbl_TEACH.share));
    
     IF arg_topic IS NOT NULL THEN
-		DROP TEMPORARY TABLE IF EXISTS topic_value;
+		DROP TEMPORARY TABLE topic_value;
 		CREATE TEMPORARY TABLE topic_value(val VARCHAR(1024));
 		SET @sql = CONCAT("INSERT INTO topic_value VALUES ('", REPLACE(arg_topic,",","'),('"), "');");
 		PREPARE stmt FROM @sql;
@@ -87,8 +75,8 @@ BEGIN
         FROM topic_value;
 	END IF;
 END
-$$
 
+$$
 CREATE PROCEDURE insertItem(
 	arg_course_id INT UNSIGNED,
     arg_name VARCHAR(256)
@@ -97,6 +85,7 @@ BEGIN
 	INSERT INTO tbl_ITEM(course_id, name)
     VALUES (arg_course_id, arg_name);
 END
+
 $$
 CREATE PROCEDURE insertLecture(
 	arg_course_id INT UNSIGNED,
@@ -107,6 +96,7 @@ BEGIN
     INSERT INTO tbl_LECTURE(item_id, course_id)
     VALUES (LAST_INSERT_ID(), arg_course_id);
 END
+
 $$
 CREATE PROCEDURE insertVideo(
 	arg_course_id INT UNSIGNED,
@@ -120,6 +110,7 @@ BEGIN
     INSERT INTO tbl_VIDEO
     VALUES (LAST_INSERT_ID(), arg_course_id, IFNULL(previewable, DEFAULT(is_previewable)), arg_duration, arg_url);
 END
+
 $$
 CREATE PROCEDURE addCaption(
 	arg_course_id INT UNSIGNED,
@@ -140,6 +131,7 @@ BEGIN
     PREPARE stmt FROM @sql;
     EXECUTE stmt;
 END
+
 $$
 CREATE PROCEDURE addResource(
 	arg_course_id INT UNSIGNED,
@@ -160,6 +152,7 @@ BEGIN
     PREPARE stmt FROM @sql;
     EXECUTE stmt;
 END
+
 $$
 CREATE PROCEDURE insertVideoSlide(
 	arg_course_id INT UNSIGNED,
@@ -175,6 +168,7 @@ BEGIN
     VALUES (LAST_INSERT_ID(), arg_course_id, arg_slide_url, arg_sync_url, 
 		arg_video_url, IFNULL(arg_duration, DEFAULT(duration)));
 END
+
 $$
 CREATE PROCEDURE insertArticle(
 	arg_course_id INT UNSIGNED,
@@ -186,6 +180,7 @@ BEGIN
     INSERT INTO tbl_ARTICLE
     VALUES (LAST_INSERT_ID(), arg_course_id, arg_content);
 END
+
 $$
 CREATE PROCEDURE insertCodingExercise(
 	arg_course_id INT UNSIGNED,
@@ -199,6 +194,7 @@ BEGIN
     INSERT INTO tbl_CODING_EXERCISE
     VALUES (LAST_INSERT_ID(), arg_course_id, arg_initial_code, arg_test_code, arg_prog_language);
 END
+
 $$
 CREATE PROCEDURE insertPTQ(
 	arg_course_id INT UNSIGNED,
@@ -212,6 +208,7 @@ BEGIN
     INSERT INTO tbl_PTQ
     VALUES (LAST_INSERT_ID(), arg_course_id, arg_minimum_score, arg_is_randomize, arg_description);
 END
+
 $$
 CREATE PROCEDURE insertQuiz(
 	arg_item_id INT UNSIGNED,
@@ -236,9 +233,8 @@ BEGIN
 		EXECUTE stmt;
     COMMIT;
 END
+
 $$
-
-
 CREATE PROCEDURE enrollCourse(
 	arg_user_id INT UNSIGNED,
     arg_course_id INT UNSIGNED,
