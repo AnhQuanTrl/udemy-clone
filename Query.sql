@@ -133,9 +133,13 @@ WHERE E.user_id = 6 AND E.user_id=F.user_id AND I.course_id = E.course_id AND F.
 GROUP BY I.course_id;
 
 -- Hien thi muc QUESTION-ANSWER cua LECTURE co id = 2 trong COURSE co id = 10 											$$$ (5)
-SELECT q.id  AS question_id, q.student_id, q.content, q.created_date AS question_created_date, a.id AS answer_id, a.user_id, a.content, a.created_date AS answer_created_date
-FROM tbl_LECTURE l, tbl_CONTEXT c, tbl_QUESTION q, tbl_ANSWER a
-WHERE l.item_id=2 AND l.course_id=1 AND c.item_id=l.item_id AND q.id=c.question_id AND a.question_id=q.id
+SELECT q.id AS question_id, U1.email as question_email, q.content, q.created_date AS question_created_date, a.id AS answer_id, U2.email AS answer_email, a.content, a.created_date AS answer_created_date
+FROM tbl_LECTURE AS l, tbl_CONTEXT AS c, tbl_USER AS U1, tbl_QUESTION AS q
+LEFT JOIN tbl_ANSWER AS a
+ON q.id=a.question_id
+LEFT JOIN tbl_USER AS U2
+ON U2.id=a.user_id
+WHERE l.item_id=2 AND l.course_id=1 AND c.item_id=l.item_id AND q.id=c.question_id AND U1.id=q.student_id 
 ORDER BY q.id, q.created_date;
 
 -- 																	NESTED QUERIES
