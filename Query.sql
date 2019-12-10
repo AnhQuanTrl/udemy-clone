@@ -74,7 +74,7 @@ FROM tbl_FINISH F , tbl_ITEM I, tbl_ENROLL E
 WHERE E.user_id=2 AND I.course_id=E.course_id AND F.item_id=I.item_id AND F.course_id=I.course_id
 GROUP BY I.course_id;
 -- Hien thi muc Q-A cua lecture co id 2 trong khoa hoc co id la 10 $$$
-SELECT q.id AS question_id, U1.email as question_email, q.content, q.created_date AS question_created_date, a.id AS answer_id, U2.email AS answer_email, a.content, a.created_date AS answer_created_date
+SELECT q.id AS question_id, U1.email as question_email, q.content as question_content, q.created_date AS question_created_date, a.id AS answer_id, U2.email AS answer_email, a.content AS answer_content, a.created_date AS answer_created_date
 FROM tbl_LECTURE AS l, tbl_CONTEXT AS c, tbl_USER AS U1, tbl_QUESTION AS q
 LEFT JOIN tbl_ANSWER AS a
 ON q.id=a.question_id
@@ -143,3 +143,7 @@ WHERE s.category_id=cate.id AND c.sub_category_id=s.id AND e.course_id=c.id
 GROUP BY cate.name;
 
 -- Tim tong thoi gian duration cua toan bo course trong subcategory 'Web Development'
+SELECT SUM(L.duration)
+FROM tbl_COURSE C, tbl_SUBCATEGORY S, tbl_LECTURE L
+WHERE S.name='Web Development' AND C.sub_category_id=S.id AND L.course_id=C.id
+GROUP BY C.id
