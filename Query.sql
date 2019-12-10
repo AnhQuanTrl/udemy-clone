@@ -1,44 +1,43 @@
 USE DBS_Assignment;
 
-# select user's name and user's course finish
-SELECT first_name, main_title 
-FROM tbl_USER u, tbl_COURSE c, tbl_FINISH f 
-WHERE u.id = f.user_id AND c.id = f.course_id 
-GROUP BY first_name;
 
-#select user's name and user's course name and enroll date
-SELECT first_name, main_title, enroll_date 
-FROM tbl_ENROLL e
-JOIN tbl_USER u ON e.user_id = u.id 
-JOIN tbl_COURSE c ON e.course_id = c.id 
-GROUP BY first_name 
-ORDER BY enroll_date;
+
+
+
 
 -- 																QUERIES FROM (AT LEAST) 2 TABLES
--- Liet ke nhung Course thuoc Topic co topic = "Python" va topic = "Java"
-SELECT * 
-FROM tbl_COURSE AS tc, tbl_COURSE_TOPIC AS tct 
-WHERE tc.id = tct.course_id AND tct.topic = "Python" AND tct.topic = "Java";
+-- Liet ke nhung Course thuoc Topic co topic = "Python" va topic = "C++" $$$
+SELECT *
+FROM tbl_COURSE C
+WHERE EXISTS(SELECT * FROM tbl_COURSE_TOPIC T WHERE C.id=T.course_id AND T.topic='Python') AND EXISTS(SELECT * FROM tbl_COURSE_TOPIC T WHERE C.id=T.course_id AND T.topic='C++');
 
--- Liet ke nhung Course co Closed Caption = "English" va "Italiano"
-SELECT tc.*
-FROM tbl_COURSE AS tc, tbl_CAPTION AS tcap
-WHERE tcap.caption_language = "English" AND tcap.caption_language = "Italiano" AND tc.id = tcap.course_id;
 
--- Liet ke nhung Section trong Course co main_title = "Angular 8 - The Complete Guide"
+-- Liet ke toan bo category,subcategory tuong ung $$$
+SELECT C.name, S.name
+FROM tbl_CATEGORY C, tbl_SUBCATEGORY S
+WHERE C.id=S.category_id;
 
+
+
+-- Liet ke toan bo course nam trong subcategory 'Web Development' va co topic la 'C++' $$$
+SELECT C.id, C.main_title
+FROM tbl_SUBCATEGORY S, tbl_COURSE C, tbl_COURSE_TOPIC T
+WHERE S.name='Web Development' AND C.sub_category_id=S.ID AND T.topic='C++' and T.course_id=C.id;
 
 -- Liet ke nhung Student da Enroll vao Course co main_title = "Learn Ethical Hacking From Scratch"
 SELECT tu.*
 FROM tbl_USER AS tu, tbl_ENROLL AS te, tbl_COURSE AS tc
 WHERE tu.student_flag = TRUE AND te.user_id = tu.id AND te.course_id = tc.id AND tc.main_title = "Learn Ethical Hacking From Scratch";
 
--- Liet ke nhung 
-
 -- Liet ke nhung Question duoc hoi boi User co first_name = "Quan", last_name = "DB" va duoc hoi trong Course co main_title = "The Web Development Bootcamp"
 SELECT tq.*
 FROM tbl_QUESTION AS tq, tbl_USER AS tu, tbl_COURSE AS tc
 WHERE tq.student_id = tu.id AND tq.course_id = tc.id;
+
+-- Liet ke nhung announcement co trong toan bo khoa hoc enroll boi user co id la 2 va ten cua giang vien thong bao $$$
+SELECT A.id, A.content, A.created_date, A.course_id, U.first_name, U.last_name
+FROM tbl_ANNOUNCEMENT A, tbl_ENROLL E, tbl_USER U
+WHERE E.user_id=2 AND A.course_id=E.course_id AND U.id=A.instructor_id;
 
 -- Liet ke nhung Topic duoc day boi cac Instructor co first_name = "Thanh" va last_name = "Vo Khac"
 SELECT *
@@ -48,17 +47,47 @@ WHERE course_id IN (
 	FROM tbl_COURSE AS tc, tbl_USER AS tu, tbl_TEACH AS tt
 	WHERE tu.first_name = "Thanh" AND tu.last_name = "Vo Khac" AND tt.course_id = tc.id AND tt.instructor_id = tu.id
 );
+-- Liet ke nhung user da dang ky course cua instructor co id la 1 va thoi gian dang ky $$$
+SELECT u.id, u.first_name, u.last_name, c.id, e.enroll_date 
+FROM tbl_ENROLL e
+JOIN tbl_USER u ON e.user_id = u.id 
+JOIN tbl_COURSE c ON e.course_id = c.id 
+WHERE c.owner_id=9
+GROUP BY first_name 
+ORDER BY enroll_date;
 
+-- Hien thi outline cua khoa hoc co id la 1 (outline la toan bo section va item) $$$
+SELECT I.course_id, I.item_id, C.section_id
+FROM tbl_ITEM AS I
+LEFT JOIN tbl_COMPOSE AS C
+ON I.item_id=C.item_id AND I.course_id=C.course_id_item
+WHERE I.course_id=1
+UNION 
+SELECT S.course_id, C.item_id, S.section_id
+FROM tbl_COMPOSE AS C
+RIGHT JOIN tbl_SECTION AS S
+ON C.course_id_section=S.course_id AND C.section_id=S.section_id
+WHERE S.course_id=1;
+-- Liet ke so luong item da duoc finish trong tung course enroll boi user co id la 2 $$$
+SELECT I.course_id, COUNT(*)
+FROM tbl_FINISH F , tbl_ITEM I, tbl_ENROLL E
+WHERE E.user_id=2 AND I.course_id=E.course_id AND F.item_id=I.item_id AND F.course_id=I.course_id
+GROUP BY I.course_id;
+-- Hien thi muc Q-A cua lecture co id 2 trong khoa hoc co id la 10 $$$
+SELECT q.id  AS question_id, q.student_id, q.content, q.created_date AS question_created_date, a.id AS answer_id, a.user_id, a.content, a.created_date AS answer_created_date
+FROM tbl_LECTURE l, tbl_CONTEXT c, tbl_QUESTION q, tbl_ANSWER a
+WHERE l.item_id=2 AND l.course_id=1 AND c.item_id=l.item_id AND q.id=c.question_id AND a.question_id=q.id
+ORDER BY q.id, q.created_date;
 -- 																	NESTED QUERIES
 # select content message from user 'cuong' to user 'quan'
-SELECT content 
+SELECT id, content 
 FROM tbl_MESSAGE 
 WHERE 
 from_id in (SELECT id FROM tbl_USER WHERE email = 'cuong@udemy.com') 
 AND 
 to_id in (SELECT id FROM tbl_USER WHERE email = 'quan@udemy.com');
 
-# select lecture's name in course 'Learn Database System'
+# select lecture's name in course 'Learn Database System' 
 SELECT name 
 FROM tbl_LECTURE
 WHERE item_id IN 
@@ -66,9 +95,9 @@ WHERE item_id IN
 	(SELECT id AS course_id_item FROM tbl_COURSE WHERE main_title = 'Learn Database System')
 );
 
--- Liet ke nhung Course thuoc ca 2 Subcategory co name = "Web Developer" va "Programming Languages"
+-- Liet ke nhung Course thuoc mot trong 2 Subcategory co name = "Web Developer" va "Programming Languages"
 SELECT * FROM tbl_COURSE WHERE sub_category_id IN (
-	SELECT id FROM tbl_SUBCATEGORY WHERE name  = "Web Developer" AND name = "Programming Languages"
+	SELECT id FROM tbl_SUBCATEGORY WHERE name  = "Web Developer" OR name = "Programming Languages"
 );
 
 -- Liet ke nhung Course thuoc Category co name = "Development"
@@ -87,7 +116,7 @@ course_id IN (SELECT id FROM tbl_COURSE WHERE main_title = "The Web Developer Bo
 
 -- 																	AGGREATE QUERY
 
--- Liet ke 10 course co rating cao nhat sap xep theo rating
+-- Liet ke 10 course co rating cao nhat sap xep theo rating 
 SELECT c.id, AVG(rating) as average_rating
 FROM tbl_COURSE c, tbl_ENROLL e
 WHERE c.id = e.course_id
@@ -103,10 +132,10 @@ GROUP BY t.topic
 ORDER BY popularity
 LIMIT 10;
 
--- find the total number of distinct course student in each category
+-- find the total number of distinct course student in each category $$$
 SELECT cate.name, COUNT(DISTINCT e.user_id)
 FROM tbl_COURSE c, tbl_SUBCATEGORY s, tbl_ENROLL e, tbl_CATEGORY cate
 WHERE s.category_id=cate.id AND c.sub_category_id=s.id AND e.course_id=c.id
 GROUP BY cate.name;
 
---
+-- Tim tong thoi gian duration cua toan bo course trong subcategory 'Web Development'

@@ -77,14 +77,14 @@ BEGIN
 	VALUES (arg_owner_id, last_course_id, DEFAULT(tbl_TEACH.permission), DEFAULT(tbl_TEACH.share));
    
     IF arg_topic IS NOT NULL THEN
+		DROP TEMPORARY TABLE topic_value;
 		CREATE TEMPORARY TABLE topic_value(val VARCHAR(1024));
-		SET @sql = CONCAT("INSERT INTO topic_value VALUES (", arg_topic, ")");
+		SET @sql = CONCAT("INSERT INTO topic_value VALUES ('", REPLACE(arg_topic,",","'),('"), "');");
 		PREPARE stmt FROM @sql;
 		EXECUTE stmt;
 		INSERT INTO tbl_COURSE_TOPIC
 		SELECT last_course_id, val
         FROM topic_value;
-        DROP TABLE topic_value;
 	END IF;
 END
 $$

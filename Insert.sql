@@ -220,25 +220,25 @@ INSERT INTO tbl_SUBCATEGORY(name, category_id) VALUES ("Operating System", 4);
 -- SELECT * FROM tbl_SUBCATEGORY ORDER BY id;
 
 -- 													===== COURSE =====
-CALL insertCourse("Roy LLC", "Lee-Kennedy", "Stand person certainly start no lot development training.", "http://www.hunt.net/", "https://dummyimage.com/80x787", "Aruba", "Expert", 19.99, "Easy hit forward them leave food image. Ready how what close individual goal dinner.", "tri.dang@gmail.com", "Web Development", "'Python'");
+CALL insertCourse("Roy LLC", "Lee-Kennedy", "Stand person certainly start no lot development training.", "http://www.hunt.net/", "https://dummyimage.com/80x787", "Aruba", "Expert", 19.99, "Easy hit forward them leave food image. Ready how what close individual goal dinner.", "tri.dang@gmail.com", "Web Development", "Python");
 
-CALL insertCourse("Bailey Ltd", "Thompson, Knapp and Fitzgerald", "Top pull fall into anyone can. True stage on professor ability continue carry. Unit identify wait war trial husband group.", "http://lang.com/", "https://dummyimage.com/371x70", "Somalia", "All Levels", 19.99, "Phone medical tend difference these development rich. By sign majority. Painting true since offer. Second because by.", "tri.dang@gmail.com", "Web Development", "'Python'");
+CALL insertCourse("Bailey Ltd", "Thompson, Knapp and Fitzgerald", "Top pull fall into anyone can. True stage on professor ability continue carry. Unit identify wait war trial husband group.", "http://lang.com/", "https://dummyimage.com/371x70", "Somalia", "All Levels", 19.99, "Phone medical tend difference these development rich. By sign majority. Painting true since offer. Second because by.", "tri.dang@gmail.com", "Web Development", "Python");
 
-CALL insertCourse("Jackson, Lee and Barry", "Harrison Inc", "Fast east best plant address notice responsibility. Bar together relate effort table positive alone. Light growth to hand.", "https://brown.com/", "https://placeimg.com/500/603/any", "Monaco", "Intermidate", 19.99, "Country include record chance house let dark. Wear meet I treat. Ever these build business painting after.", "tri.dang@gmail.com", "Web Development", "'Python'");
+CALL insertCourse("Jackson, Lee and Barry", "Harrison Inc", "Fast east best plant address notice responsibility. Bar together relate effort table positive alone. Light growth to hand.", "https://brown.com/", "https://placeimg.com/500/603/any", "Monaco", "Intermidate", 19.99, "Country include record chance house let dark. Wear meet I treat. Ever these build business painting after.", "tri.dang@gmail.com", "Web Development", "C++");
 
-CALL insertCourse("Adams-Miller", "Ward, Thompson and Trevino", "Former political manage professional hope none base. Should summer reach parent. Think many interest hot treat score.", "https://kennedy.com/", "https://placeimg.com/245/673/any", "Vanuatu", "Beginner", 19.99, "Huge beyond other build federal wish try. Necessary direction prevent. Protect chair ready wind scene.", "tri.dang@gmail.com", "Web Development", "'Python'");
+CALL insertCourse("Adams-Miller", "Ward, Thompson and Trevino", "Former political manage professional hope none base. Should summer reach parent. Think many interest hot treat score.", "https://kennedy.com/", "https://placeimg.com/245/673/any", "Vanuatu", "Beginner", 19.99, "Huge beyond other build federal wish try. Necessary direction prevent. Protect chair ready wind scene.", "tri.dang@gmail.com", "Data Science", "AI,Machine Learning");
 
-CALL insertCourse("Cook, Hicks and Olson", "Clarke, Garcia and Gross", "Detail practice professional. Kid lay picture expect style watch.", "https://www.meyer.com/", "https://placeimg.com/833/94/any", "Uruguay", "Intermidate", 19.99, "Animal show successful old. Live huge police movement issue want.", "tri.dang@gmail.com", "Web Development", "'Python'");
+CALL insertCourse("Cook, Hicks and Olson", "Clarke, Garcia and Gross", "Detail practice professional. Kid lay picture expect style watch.", "https://www.meyer.com/", "https://placeimg.com/833/94/any", "Uruguay", "Intermidate", 19.99, "Animal show successful old. Live huge police movement issue want.", "tri.dang@gmail.com", "Web Development", "Python");
 
-CALL insertCourse("Ballard, Rice and Freeman", "Lopez, Green and Downs", "Son should grow behind. Guess much majority fund author.", "https://hart.com/", "https://dummyimage.com/601x736", "Brunei Darussalam", "All Levels", 19.99, "Partner international test position. Amount house spring lose put resource crime. Authority maintain office unit buy page.", "tri.dang@gmail.com", "Web Development", "'Python'");
+CALL insertCourse("Ballard, Rice and Freeman", "Lopez, Green and Downs", "Son should grow behind. Guess much majority fund author.", "https://hart.com/", "https://dummyimage.com/601x736", "Brunei Darussalam", "All Levels", 19.99, "Partner international test position. Amount house spring lose put resource crime. Authority maintain office unit buy page.", "tri.dang@gmail.com", "Data Science", "AI");
 
-CALL insertCourse("Holmes, Foley and Rhodes", "Snyder-Pope", "Your skin mention develop paper defense particularly. Candidate see relate. Tell evening she success.", "https://serrano-rush.com/", "https://placekitten.com/531/187", "Timor-Leste", "Expert", 19.99, "Second top minute people. Must doctor staff often assume treat strong. Experience important tax sea similar.", "tri.dang@gmail.com", "Web Development", "'Python'");
+CALL insertCourse("Holmes, Foley and Rhodes", "Snyder-Pope", "Your skin mention develop paper defense particularly. Candidate see relate. Tell evening she success.", "https://serrano-rush.com/", "https://placekitten.com/531/187", "Timor-Leste", "Expert", 19.99, "Second top minute people. Must doctor staff often assume treat strong. Experience important tax sea similar.", "tri.dang@gmail.com", "Web Development", "Python");
 
-CALL insertCourse("Robinson-Walker", "Garcia, Colon and Cobb", "There represent trouble good cause own economic. Later into mother ball. And others simply control great sit one.", "http://mercado.com/", "https://placekitten.com/232/87", "Sweden", "Intermidate", 19.99, "Local day full notice. Listen seat husband require.", "tri.dang@gmail.com", "Web Development", "'Python'");
+CALL insertCourse("Robinson-Walker", "Garcia, Colon and Cobb", "There represent trouble good cause own economic. Later into mother ball. And others simply control great sit one.", "http://mercado.com/", "https://placekitten.com/232/87", "Sweden", "Intermidate", 19.99, "Local day full notice. Listen seat husband require.", "tri.dang@gmail.com", "Data Science", "Python");
 
-CALL insertCourse("Stevens, Clark and Sanders", "Simpson Inc", "Western across sell cultural. Actually never data change high.", "http://www.campbell-brewer.com/", "https://placekitten.com/324/568", "Greece", "Expert", 19.99, "See administration shake general population. Lot its staff network partner reach can during. Democratic stay above state.", "tri.dang@gmail.com", "Web Development", "'Python'");
+CALL insertCourse("Stevens, Clark and Sanders", "Simpson Inc", "Western across sell cultural. Actually never data change high.", "http://www.campbell-brewer.com/", "https://placekitten.com/324/568", "Greece", "Expert", 19.99, "See administration shake general population. Lot its staff network partner reach can during. Democratic stay above state.", "tri.dang@gmail.com", "Web Development", "Python");
 
-CALL insertCourse("Short-Cochran", "Davenport-Graves", "Pass other four team often. Far money speak Congress. Trade piece street city such.", "http://www.chen-reed.com/", "https://placeimg.com/697/18/any", "Sri Lanka", "All Levels", 19.99, "Bill plant exist major born if. Up end official true.", "tri.dang@gmail.com", "Web Development", "'Python'");
+CALL insertCourse("Short-Cochran", "Davenport-Graves", "Pass other four team often. Far money speak Congress. Trade piece street city such.", "http://www.chen-reed.com/", "https://placeimg.com/697/18/any", "Sri Lanka", "All Levels", 19.99, "Bill plant exist major born if. Up end official true.", "tri.dang@gmail.com", "Web Development", "Python,C++");
 
 -- SELECT * FROM tbl_COURSE ORDER BY id;
 
@@ -550,25 +550,25 @@ CALL enrollCourse(10, 9, 14.99);
 -- SELECT * FROM tbl_ENROLL ORDER BY user_id;
 
 -- 													===== FINISH =====
-INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(1, 1, 1);
+INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(1, 23, 3);
 
-INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(1, 2, 1);
+INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(1, 33, 3);
 
-INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(2, 2, 1);
+INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(2, 6, 1);
 
-INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(3, 2, 1);
+INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(2, 45, 1);
 
-INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(4, 1, 1);
+INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(1, 39, 6);
 
-INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(6, 1, 1);
+INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(2, 39, 6);
 
-INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(7, 6, 1);
+INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(2, 17, 6);
 
-INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(4, 5, 1);
+INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(2, 44, 6);
 
-INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(5, 2, 1);
+INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(1, 33, 3);
 
-INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(1, 4, 1);
+INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(1, 17, 6);
 
 -- SELECT * FROM tbl_FINISH ORDER BY user_id;
 
@@ -604,15 +604,15 @@ INSERT INTO tbl_QUESTION(student_id, course_id, content) VALUES (2, 1, "Wide all
 -- 													===== ANSWER =====
 INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (1, 3, "Activity body natural myself foot. Main debate if last wide service. Son lot study forward help use pretty consider.");
 
-INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (2, 1, "Second ok say our process tell public.");
+INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (1, 1, "Second ok say our process tell public.");
 
-INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (3, 2, "Sometimes music economic play large second. Five move concern series.");
+INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (2, 2, "Sometimes music economic play large second. Five move concern series.");
 
-INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (4, 6, "Where any thank. Nice interview them program change official even company. Dark field protect recently.");
+INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (2, 6, "Where any thank. Nice interview them program change official even company. Dark field protect recently.");
 
-INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (5, 7, "Politics morning spend could book style popular force.");
+INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (3, 7, "Politics morning spend could book style popular force.");
 
-INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (6, 1, "Father let listen religious board yard government. Town want effort mention good. Event as second more how son.");
+INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (3, 1, "Father let listen religious board yard government. Town want effort mention good. Event as second more how son.");
 
 INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (7, 2, "Young side event result position author. Manage main only truth trouble board. Century woman training fall but light attack.");
 
@@ -625,11 +625,11 @@ INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (10, 2, "Keep devel
 -- SELECT * FROM tbl_ANSWER ORDER BY id;
 
 -- 													===== CONTEXT =====
-INSERT INTO tbl_CONTEXT(question_id, item_id, course_id) VALUES (1, 1, 1);
+INSERT INTO tbl_CONTEXT(question_id, item_id, course_id) VALUES (1, 2, 1);
 
 INSERT INTO tbl_CONTEXT(question_id, item_id, course_id) VALUES (2, 2, 1);
 
-INSERT INTO tbl_CONTEXT(question_id, item_id, course_id) VALUES (3, 3, 1);
+INSERT INTO tbl_CONTEXT(question_id, item_id, course_id) VALUES (3, 2, 1);
 
 INSERT INTO tbl_CONTEXT(question_id, item_id, course_id) VALUES (4, 4, 1);
 
