@@ -566,7 +566,7 @@ INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(2, 17, 6);
 
 INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(2, 44, 6);
 
-INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(1, 33, 3);
+INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(3, 34, 4);
 
 INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(1, 17, 6);
 
