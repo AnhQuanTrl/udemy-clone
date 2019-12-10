@@ -39,16 +39,36 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 -- 													===== USER =====
 
+INSERT INTO tbl_USER (
+	email,
+	password,
+	first_name,
+	last_name,
+	website,
+	user_language,
+	instructor_flag
+) VALUES (
+	"tri.dang@gmail.com",
+	"At&2DL56*9",
+	"Tri",
+	"Dang",
+	"tridang.info",
+	"Vietnamese",
+	TRUE
+);
+
 INSERT INTO tbl_USER(
 	email, 
 	password, 
 	first_name, 
-	last_name
+	last_name,
+	instructor_flag
 ) VALUES (
 	"vuongcuong@gmail.com",
 	"PPGC%ja&_8",
 	"Cuong",
-	"Vuong"
+	"Vuong",
+	TRUE
 );
 
 INSERT INTO tbl_USER(
@@ -56,13 +76,15 @@ INSERT INTO tbl_USER(
 	password, 
 	first_name, 
 	last_name, 
-	headline
+	headline,
+	instructor_flag
 ) VALUES (
 	"quan.db.2709@gmail.com",
 	"44LVcJaR^o",
 	"Quan",
 	"DB",
-	"0346809059"
+	"0346809059",
+	TRUE
 );
 
 INSERT INTO tbl_USER (
@@ -102,13 +124,15 @@ INSERT INTO tbl_USER (
 	password,
 	first_name,
 	last_name,
-	profile_setting
+	profile_setting,
+	instructor_flag
 ) VALUES (
 	"dat.nguyen@gmail.com",
 	"29RFwxep!Q",
 	"Dat",
 	"Nguyen Duong Minh Tam",
-	TRUE
+	TRUE,
+	FALSE
 );
 
 INSERT INTO tbl_USER (
@@ -116,13 +140,15 @@ INSERT INTO tbl_USER (
 	password,
 	first_name,
 	last_name,
-	profile_picture
+	profile_picture,
+	instructor_flag
 ) VALUES (
 	"lam.daihiep@gmail.com",
 	"_jX!a6nf0n",
 	"Lam",
 	"DH",
-	"lamdh.jpg"
+	"lamdh.jpg",
+	FALSE
 );
 
 INSERT INTO tbl_USER (
@@ -130,13 +156,15 @@ INSERT INTO tbl_USER (
 	password,
 	first_name,
 	last_name,
-	facebook
+	facebook,
+	instructor_flag
 ) VALUES (
 	"user_test@gmail.com",
 	"$BAFZdp*3*",
 	"Nguoi dung",
 	"Thu nghiem",
-	"facebook.com/usertest"
+	"facebook.com/usertest",
+	FALSE
 );
 
 INSERT INTO tbl_USER (
@@ -144,31 +172,15 @@ INSERT INTO tbl_USER (
 	password,
 	first_name,
 	last_name,
-	youtube
+	youtube,
+	instructor_flag
 ) VALUES (
 	"youtuber@gmail.com",
 	"ZjTedhof!0",
 	"Youtuber",
 	"Chuyen nghiep",
-	"youtube.com/youtuberchuyennghiep"
-);
-
-INSERT INTO tbl_USER (
-	email,
-	password,
-	first_name,
-	last_name,
-	website,
-	user_language,
-	instructor_flag
-) VALUES (
-	"tri.dang@gmail.com",
-	"At&2DL56*9",
-	"Tri",
-	"Dang",
-	"tridang.info",
-	"Vietnamese",
-	TRUE
+	"youtube.com/youtuberchuyennghiep",
+	FALSE
 );
 
 INSERT INTO tbl_USER (
@@ -179,12 +191,12 @@ INSERT INTO tbl_USER (
 	bigraphy,
 	instructor_flag
 ) VALUES (
-	"best.leesin@gmail.com",
+	"testing@gmail.com",
 	"Pq!0CCac4S",
-	"Quan",
-	"DB",
-	"Tôi là người chơi đi rừng của team PPL, nhiệm vụ của tôi là F2W với chỉ số damage gây ra không tưởng thua cả con sp!",
-	TRUE
+	"Testing",
+	"User Pro",
+	"I'm a testing user thats very pro",
+	FALSE
 );
 
 -- SELECT * FROM tbl_USER ORDER BY id;
@@ -209,36 +221,181 @@ INSERT INTO tbl_CATEGORY(name) VALUES ("Music");
 INSERT INTO tbl_SUBCATEGORY(name, category_id) VALUES ("Web Development", 1);
 INSERT INTO tbl_SUBCATEGORY(name, category_id) VALUES ("Data Science", 1);
 INSERT INTO tbl_SUBCATEGORY(name, category_id) VALUES ("Mobile Apps", 1);
+INSERT INTO tbl_SUBCATEGORY(name, category_id) VALUES ("Programming Language", 1);
 INSERT INTO tbl_SUBCATEGORY(name, category_id) VALUES ("Finance", 2);
 INSERT INTO tbl_SUBCATEGORY(name, category_id) VALUES ("Entrepreneurship", 2);
-INSERT INTO tbl_SUBCATEGORY(name, category_id) VALUES ("Communication", 2);
+INSERT INTO tbl_SUBCATEGORY(name, category_id) VALUES ("Communications", 2);
 INSERT INTO tbl_SUBCATEGORY(name, category_id) VALUES ("IT Certification", 4);
 INSERT INTO tbl_SUBCATEGORY(name, category_id) VALUES ("Network & Security", 4);
 INSERT INTO tbl_SUBCATEGORY(name, category_id) VALUES ("Hardware", 4);
-INSERT INTO tbl_SUBCATEGORY(name, category_id) VALUES ("Operating System", 4);
 
 -- SELECT * FROM tbl_SUBCATEGORY ORDER BY id;
 
 -- 													===== COURSE =====
-CALL insertCourse("Roy LLC", "Lee-Kennedy", "Stand person certainly start no lot development training.", "http://www.hunt.net/", "https://dummyimage.com/80x787", "Aruba", "Expert", 19.99, "Easy hit forward them leave food image. Ready how what close individual goal dinner.", "tri.dang@gmail.com", "Web Development", "Python");
+CALL insertCourse(
+	"Complete Python Bootcamp: Go from zero to hero in Python 3", 
+	"Learn Python like a Professional! Start from the basics and go all the way to creating your own applications and games!",
+	"Become a Python Programmer and learn one of employer's most requested skills of 2018!", 
+	"https://www.youtube.com/watch?v=RVK1lm_fijU",
+	"https://dummyimage.com/80x787", 
+	"English",
+	"All Levels", 
+	194.99, 
+	"Easy hit forward them leave food image. Ready how what close individual goal dinner.",
+	"quan.tran@gmail.com", 
+	"Programming Language",
+	"Python"
+);
 
-CALL insertCourse("Bailey Ltd", "Thompson, Knapp and Fitzgerald", "Top pull fall into anyone can. True stage on professor ability continue carry. Unit identify wait war trial husband group.", "http://lang.com/", "https://dummyimage.com/371x70", "Somalia", "All Levels", 19.99, "Phone medical tend difference these development rich. By sign majority. Painting true since offer. Second because by.", "tri.dang@gmail.com", "Web Development", "Python");
+CALL insertCourse(
+	"The Web Developer Bootcamp", 
+	"The only course you need to learn web development - HTML, CSS, JS, Node, and More!", 
+	"Hi! Welcome to the Web Developer Bootcamp, the only course you need to learn web development. There are a lot of options for online developer training, but this course is without a doubt the most comprehensive and effective on the market.", 
+	"https://www.youtube.com/watch?v=RVK1lm_fijU", 
+	"https://dummyimage.com/371x70", 
+	"English", 
+	"All Levels", 
+	199.99, 
+	"Phone medical tend difference these development rich. By sign majority. Painting true since offer. Second because by.",
+	"vuongcuong@gmail.com", 
+	"Web Development", 
+	"HTML,CSS,JavaScript,NodeJS"
+);
 
-CALL insertCourse("Jackson, Lee and Barry", "Harrison Inc", "Fast east best plant address notice responsibility. Bar together relate effort table positive alone. Light growth to hand.", "https://brown.com/", "https://placeimg.com/500/603/any", "Monaco", "Intermidate", 19.99, "Country include record chance house let dark. Wear meet I treat. Ever these build business painting after.", "tri.dang@gmail.com", "Web Development", "C++");
+CALL insertCourse(
+	"Machine Learning A-Z: Hands-On Python & R In Data Science",
+	"Learn to create Machine Learning Algorithms in Python and R from two Data Science experts. Code templates included.", 
+	"This course has been designed by two professional Data Scientists so that we can share our knowledge and help you learn complex theory, algorithms and coding libraries in a simple way.", 
+	"https://brown.com/", 
+	"https://placeimg.com/500/603/any", 
+	"English", 
+	"All Levels", 
+	199.99, 
+	"Country include record chance house let dark. Wear meet I treat. Ever these build business painting after.",
+	"quan.db.2709@gmail.com",
+	"Data Science", 
+	"Python"
+);
 
-CALL insertCourse("Adams-Miller", "Ward, Thompson and Trevino", "Former political manage professional hope none base. Should summer reach parent. Think many interest hot treat score.", "https://kennedy.com/", "https://placeimg.com/245/673/any", "Vanuatu", "Beginner", 19.99, "Huge beyond other build federal wish try. Necessary direction prevent. Protect chair ready wind scene.", "tri.dang@gmail.com", "Data Science", "AI,Machine Learning");
+CALL insertCourse(
+	"The Complete Financial Analyst Course 2019", 
+	"Excel, Accounting, Financial Statement Analysis, Business Analysis, Financial Math, PowerPoint: Everything is Included!", 
+	"The Complete Financial Analyst Course is the most comprehensive, dynamic, and practical course you will find online.", 
+	"https://kennedy.com/", 
+	"https://placeimg.com/245/673/any", 
+	"English", 
+	"All Levels", 
+	194.99, 
+	"Huge beyond other build federal wish try. Necessary direction prevent. Protect chair ready wind scene.", 
+	"tri.dang@gmail.com", 
+	"Finance", 
+	"Financial Analysis"
+);
 
-CALL insertCourse("Cook, Hicks and Olson", "Clarke, Garcia and Gross", "Detail practice professional. Kid lay picture expect style watch.", "https://www.meyer.com/", "https://placeimg.com/833/94/any", "Uruguay", "Intermidate", 19.99, "Animal show successful old. Live huge police movement issue want.", "tri.dang@gmail.com", "Web Development", "Python");
+CALL insertCourse(
+	"Beginner to Pro in Excel: Financial Modeling and Valuation", 
+	"Financial Modeling in Excel that would allow you to walk into a job and be a rockstar from day one!",
+	"Learn the subtleties of Financial Modeling from someone who has walked the same path. Beat the learning curve and stand out from your colleagues. ", 
+	"https://www.meyer.com/", 
+	"https://placeimg.com/833/94/any", 
+	"English", 
+	"All Levels", 
+	194.99,
+	"Animal show successful old. Live huge police movement issue want.", 
+	"tri.dang@gmail.com", 
+	"Finance",
+	"Excel"
+);
 
-CALL insertCourse("Ballard, Rice and Freeman", "Lopez, Green and Downs", "Son should grow behind. Guess much majority fund author.", "https://hart.com/", "https://dummyimage.com/601x736", "Brunei Darussalam", "All Levels", 19.99, "Partner international test position. Amount house spring lose put resource crime. Authority maintain office unit buy page.", "tri.dang@gmail.com", "Data Science", "AI");
+CALL insertCourse(
+	"Writing With Flair: How To Become An Exceptional Writer", 
+	"Ex-Wall Street Journal Editor Teaches How To Write With Confidence, Style & Impact", 
+	"The program is taught by Shani Raja, a former Wall Street Journal editor whose courses have attracted more than 240,000 students on this platform and been featured in Time and Business Insider..", 
+	"https://hart.com/", 
+	"https://dummyimage.com/601x736", 
+	"English", 
+	"All Levels", 
+	199.99, 
+	"WELCOME TO THE BESTSELLING WRITING COURSE ON UDEMY, WITH MORE THAN 73,000 STUDENTS, THOUSANDS OF 5-STAR REVIEWS, AND NEWLY UPDATED CONTENT AND RESOURCES.",
+	"tri.dang@gmail.com",
+	"Communications",
+	"Writing"
+);
 
-CALL insertCourse("Holmes, Foley and Rhodes", "Snyder-Pope", "Your skin mention develop paper defense particularly. Candidate see relate. Tell evening she success.", "https://serrano-rush.com/", "https://placekitten.com/531/187", "Timor-Leste", "Expert", 19.99, "Second top minute people. Must doctor staff often assume treat strong. Experience important tax sea similar.", "tri.dang@gmail.com", "Web Development", "Python");
+CALL insertCourse(
+	"Learn Ethical Hacking From Scratch", 
+	"Become an ethical hacker that can hack computer systems like black hat hackers and secure them like security experts.", 
+	"This course is highly practical but it won't neglect the theory; we'll start with ethical hacking basics, breakdown the different penetration testing fields and install the needed software (on Windows, Linux and Mac OS X), then we'll dive and start hacking straight away. From here onwards you'll learn everything by example, by analysing and exploiting different systems such as networks, servers, clients, websites .....etc, so we'll never have any boring dry theoretical lectures.", 
+	"https://serrano-rush.com/", 
+	"https://placekitten.com/531/187", 
+	"English", 
+	"All Levels", 
+	194.99,
+	"Welcome this comprehensive Ethical Hacking course! This course assumes you have NO prior knowledge in hacking and by the end of it you'll be able to hack systems like black-hat hackers and secure them like security experts!",
+	"anh.thin@gmail.com", 
+	"Network & Security", 
+	"Ethical Hacking,Network Security"
+);
 
-CALL insertCourse("Robinson-Walker", "Garcia, Colon and Cobb", "There represent trouble good cause own economic. Later into mother ball. And others simply control great sit one.", "http://mercado.com/", "https://placekitten.com/232/87", "Sweden", "Intermidate", 19.99, "Local day full notice. Listen seat husband require.", "tri.dang@gmail.com", "Data Science", "Python");
+CALL insertCourse(
+	"AWS Certified Solutions Architect - Associate 2020", 
+	"Want to pass the AWS Solutions Architect - Associate Exam? Want to become Amazon Web Services Certified? Do this course!", 
+	"Amazon Web Services (AWS) Certification is fast becoming the must have certificates for any IT professional working with AWS. This course is designed to help you pass the AWS Certified Solutions Architect (CSA) - Associate Exam. Even if you have never logged in to the AWS platform before, by the end of our AWS training you will be able to take the CSA exam. No programming knowledge needed and no prior AWS experience required. With this AWS certification under your belt (and optionally after completing our AWS Certified Developer 2020 - also available on Udemy), you will be in high demand by many employers and you can command a superior salary.", 
+	"https://serrano-rush.com/", 
+	"https://placekitten.com/531/187", 
+	"English", 
+	"All Levels", 
+	179.99,
+	"Note: Our course material, like the AWS certification exams, are continually evolving. This course covers all you need to know to pass the 2019 exam AND the new 2020 exam (now available in Beta but will be generally available in 2020). Over half a million students have done our courses on Udemy. This course will be updated for free throughout 2020 and is the one stop shop for everything you need to pass the AWS Solutions Architect Associate exam.",
+	"anh.thin@gmail.com", 
+	"IT Certification", 
+	"AWS Certification"
+);
 
-CALL insertCourse("Stevens, Clark and Sanders", "Simpson Inc", "Western across sell cultural. Actually never data change high.", "http://www.campbell-brewer.com/", "https://placekitten.com/324/568", "Greece", "Expert", 19.99, "See administration shake general population. Lot its staff network partner reach can during. Democratic stay above state.", "tri.dang@gmail.com", "Web Development", "Python");
+CALL insertCourse(
+	"The Complete Cyber Security Course : Hackers Exposed!", 
+	"Volume 1 : Become a Cyber Security Specialist, Learn How to Stop Hackers, Prevent Hacking, Learn IT Security & INFOSEC", 
+	"Learn a practical skill-set in defeating all online threats, including - advanced hackers, trackers, malware, zero days, exploit kits, cybercriminals and more.", 
+	"http://mercado.com/", 
+	"https://placekitten.com/232/87",
+	"English", 
+	"All Levels", 
+	119.99, 
+	"Become a Cyber Security Specialist - Go from a beginner to advanced in this easy to follow expert course.", 
+	"anh.thin@gmail.com", 
+	"Network & Security",
+	"Ethical Hacking,Cyber Security,Network Security"
+);
 
-CALL insertCourse("Short-Cochran", "Davenport-Graves", "Pass other four team often. Far money speak Congress. Trade piece street city such.", "http://www.chen-reed.com/", "https://placeimg.com/697/18/any", "Sri Lanka", "All Levels", 19.99, "Bill plant exist major born if. Up end official true.", "tri.dang@gmail.com", "Web Development", "Python,C++");
+CALL insertCourse(
+	"PLC Programming From Scratch (PLC I)", 
+	"This course will give a person with no prior experience the basic tools necessary to create a PLC program from scratch.", 
+	"This course is designed to equip the novice with no prior PLC programming experience with the basic tools necessary to create a complete PLC program using ladder logic common to most current platforms.",
+	"http://www.campbell-brewer.com/",
+	"https://placekitten.com/324/568",
+	"English", 
+	"Beginner", 
+	99.99, 
+	"See administration shake general population. Lot its staff network partner reach can during. Democratic stay above state.",
+	"anh.thin@gmail.com",
+	"Hardware",
+	"PLC"
+);
+
+CALL insertCourse(
+	"Tech Explorations Arduino Step by Step: Getting Started",
+	"The original comprehensive course designed for new Arduino Makers", 
+	"This is the original, best-selling Arduino course on Udemy, by Tech Explorations, fanatically supported by Dr Peter Dalmaris.  It is trusted by thousands of students, and contains 16 hours of content, quizzes, Github code repository, thousands of active student discussions, and countless downloadable and linked resources.",
+	"http://www.chen-reed.com/", 
+	"https://placeimg.com/697/18/any", 
+	"English", 
+	"Beginner",
+	149.99, 
+	"Bill plant exist major born if. Up end official true.", 
+	"anh.thin@gmail.com", 
+	"Hardware", 
+	"Arduino,Internet Of Things"
+);
 
 -- SELECT * FROM tbl_COURSE ORDER BY id;
 
@@ -248,13 +405,13 @@ CALL insertCourse("Short-Cochran", "Davenport-Graves", "Pass other four team oft
 -- 													===== ANNOUNCEMENT =====
 INSERT INTO tbl_ANNOUNCEMENT(course_id, instructor_id, content) VALUES (1, 1, "Behind born on shake raise officer. Consumer democratic near manage despite program. Notice reality police its adult.");
 
-INSERT INTO tbl_ANNOUNCEMENT(course_id, instructor_id, content) VALUES (1, 1, "Movie election visit single energy student. Mention for build it. Yeah better who they paper force gun.");
+INSERT INTO tbl_ANNOUNCEMENT(course_id, instructor_id, content) VALUES (2, 2, "Movie election visit single energy student. Mention for build it. Yeah better who they paper force gun.");
 
-INSERT INTO tbl_ANNOUNCEMENT(course_id, instructor_id, content) VALUES (1, 1, "Agreement series energy character north model wall.");
+INSERT INTO tbl_ANNOUNCEMENT(course_id, instructor_id, content) VALUES (3, 3, "Agreement series energy character north model wall.");
 
-INSERT INTO tbl_ANNOUNCEMENT(course_id, instructor_id, content) VALUES (1, 1, "Change reach administration line current. Current high good shoulder former animal industry.");
+INSERT INTO tbl_ANNOUNCEMENT(course_id, instructor_id, content) VALUES (4, 4, "Change reach administration line current. Current high good shoulder former animal industry.");
 
-INSERT INTO tbl_ANNOUNCEMENT(course_id, instructor_id, content) VALUES (1, 1, "General couple turn position. Oil too avoid.");
+INSERT INTO tbl_ANNOUNCEMENT(course_id, instructor_id, content) VALUES (5, 5, "General couple turn position. Oil too avoid.");
 
 INSERT INTO tbl_ANNOUNCEMENT(course_id, instructor_id, content) VALUES (1, 1, "Treat statement defense. Even appear school example. Now together face leave. Choose my or large feel do position.");
 
@@ -293,25 +450,25 @@ CALL insertVideo(1, "Value leg wonder idea per when.", FALSE, 16.00, "https://ww
 -- SELECT * FROM tbl_VIDEO ORDER BY item_id;
 
 -- 													----- CAPTION -----
-CALL addCaption(1, "News anyone force compare.", "('Togo', 'https://www.odom-jones.info/')");
+CALL addCaption(1, "News anyone force compare.", "('English', 'https://www.odom-jones.info/')");
 
-CALL addCaption(1, "News anyone force compare.", "('Albania', 'https://www.crosby-walker.info/')");
+CALL addCaption(1, "News anyone force compare.", "('French', 'https://www.crosby-walker.info/')");
 
-CALL addCaption(1, "News anyone force compare.", "('Estonia', 'https://ortiz.net/')");
+CALL addCaption(1, "News anyone force compare.", "('German', 'https://ortiz.net/')");
 
-CALL addCaption(1, "News anyone force compare.", "('Gambia', 'https://burgess.com/')");
+CALL addCaption(1, "White must able.", "('Italian', 'https://burgess.com/')");
 
-CALL addCaption(1, "News anyone force compare.", "('Congo', 'http://www.myers.biz/')");
+CALL addCaption(1, "White must able.", "('Polish', 'http://www.myers.biz/')");
 
-CALL addCaption(1, "News anyone force compare.", "('Tonga', 'http://www.peters.biz/')");
+CALL addCaption(1, "White must able.", "('Portuguese', 'http://www.peters.biz/')");
 
-CALL addCaption(1, "News anyone force compare.", "('Barbados', 'http://www.torres.com/')");
+CALL addCaption(1, "Eat hold fast how heart.", "('Spanish', 'http://www.torres.com/')");
 
-CALL addCaption(1, "News anyone force compare.", "('Netherlands', 'http://townsend-watson.com/')");
+CALL addCaption(1, "Value leg wonder idea per when.", "('Romanian', 'http://townsend-watson.com/')");
 
-CALL addCaption(1, "News anyone force compare.", "('Germany', 'https://www.hernandez.com/')");
+CALL addCaption(1, "Value leg wonder idea per when.", "('Turkish', 'https://www.hernandez.com/')");
 
-CALL addCaption(1, "News anyone force compare.", "('Panama', 'http://www.fowler.info/')");
+CALL addCaption(1, "Value leg wonder idea per when.", "('Indonesian', 'http://www.fowler.info/')");
 
 -- SELECT * FROM tbl_CAPTION ORDER BY item_id;
 
@@ -527,48 +684,52 @@ CALL addResource(2, "Commercial do doctor.", "('Bad last social figure often ide
 -- SELECT * FROM tbl_RESOURCE ORDER BY item_id;
 
 -- 													===== ENROLL =====
-CALL enrollCourse(2, 1, 14.99);
+CALL enrollCourse(6, 1, 14.99);
+UPDATE tbl_ENROLL SET rating = 5, comment = "Very excellent Course!" WHERE user_id = 6 AND course_id = 1;
 
-CALL enrollCourse(2, 2, 19.99);
+CALL enrollCourse(7, 2, 19.99);
+UPDATE tbl_ENROLL SET rating = 4, comment = "Good Course!" WHERE user_id = 7 AND course_id = 2;
 
-CALL enrollCourse(1, 3, 9.99);
+CALL enrollCourse(8, 3, 9.99);
+UPDATE tbl_ENROLL SET rating = 3, comment = "Decent Course!" WHERE user_id = 8 AND course_id = 3;
 
-CALL enrollCourse(3, 4, 4.99);
+CALL enrollCourse(9, 4, 4.99);
 
-CALL enrollCourse(4, 4, 19.99);
+CALL enrollCourse(10, 4, 19.99);
 
-CALL enrollCourse(1, 6, 19.99);
+CALL enrollCourse(6, 6, 19.99);
 
-CALL enrollCourse(2, 6, 19.99);
+CALL enrollCourse(7, 6, 19.99);
 
-CALL enrollCourse(6, 1, 9.99);
+CALL enrollCourse(8, 1, 9.99);
+UPDATE tbl_ENROLL SET rating = 5, comment = "Good Course! I learned many from this course, thank instructor!" WHERE user_id = 8 AND course_id = 1;
 
-CALL enrollCourse(7, 2, 4.99);
+CALL enrollCourse(9, 2, 4.99);
 
 CALL enrollCourse(10, 9, 14.99);
 
 -- SELECT * FROM tbl_ENROLL ORDER BY user_id;
 
 -- 													===== FINISH =====
-INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(1, 23, 3);
+INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(6, 1, 1);
 
-INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(1, 33, 3);
+INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(6, 17, 6);
 
-INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(2, 6, 1);
+INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(7, 11, 2);
 
-INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(2, 45, 1);
+INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(7, 17, 6);
 
-INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(1, 39, 6);
+INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(8, 3, 1);
 
-INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(2, 39, 6);
+INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(8, 13, 3);
 
-INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(2, 17, 6);
+INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(9, 11, 2);
 
-INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(2, 44, 6);
+INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(9, 14, 4);
 
-INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(1, 33, 3);
+INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(10, 14, 4);
 
-INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(1, 17, 6);
+INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(10, 37, 9);
 
 -- SELECT * FROM tbl_FINISH ORDER BY user_id;
 
@@ -576,51 +737,52 @@ INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(1, 17, 6);
 -- SELECT * FROM tbl_MESSAGE ORDER BY from_id;
 
 -- 													===== TEACH =====
+INSERT INTO tbl_TEACH(instructor_id, course_id) VALUES (3, 2);
+
 -- SELECT * FROM tbl_TEACH ORDER BY instructor_id;
 
 -- 													===== QUESTION =====
-INSERT INTO tbl_QUESTION(student_id, course_id, content) VALUES (1, 1, "Cell professor his. Star candidate see question doctor reason.");
+INSERT INTO tbl_QUESTION(student_id, course_id, content) VALUES (6, 1, "Cell professor his. Star candidate see question doctor reason.");
 
-INSERT INTO tbl_QUESTION(student_id, course_id, content) VALUES (2, 1, "Race show language western here eat thus. Get development get speak speak outside.");
+INSERT INTO tbl_QUESTION(student_id, course_id, content) VALUES (6, 6, "Race show language western here eat thus. Get development get speak speak outside.");
 
-INSERT INTO tbl_QUESTION(student_id, course_id, content) VALUES (3, 1, "Score major whatever draw nor. Cut available sit. Increase listen despite help.");
+INSERT INTO tbl_QUESTION(student_id, course_id, content) VALUES (7, 2, "Score major whatever draw nor. Cut available sit. Increase listen despite help.");
 
-INSERT INTO tbl_QUESTION(student_id, course_id, content) VALUES (4, 1, "Doctor evening including range gas minute important. Bit ever past form can where country.");
+INSERT INTO tbl_QUESTION(student_id, course_id, content) VALUES (7, 6, "Doctor evening including range gas minute important. Bit ever past form can where country.");
 
-INSERT INTO tbl_QUESTION(student_id, course_id, content) VALUES (1, 1, "Customer civil science while. Always so majority week laugh. Not scene send relate for.");
+INSERT INTO tbl_QUESTION(student_id, course_id, content) VALUES (8, 1, "Customer civil science while. Always so majority week laugh. Not scene send relate for.");
 
-INSERT INTO tbl_QUESTION(student_id, course_id, content) VALUES (3, 1, "Education Republican quite degree begin father too. Second national cost ever whole style. Final since event talk.");
+INSERT INTO tbl_QUESTION(student_id, course_id, content) VALUES (8, 3, "Education Republican quite degree begin father too. Second national cost ever whole style. Final since event talk.");
 
-INSERT INTO tbl_QUESTION(student_id, course_id, content) VALUES (4, 1, "Perform seven carry theory reality spend Mr art.");
+INSERT INTO tbl_QUESTION(student_id, course_id, content) VALUES (9, 2, "Perform seven carry theory reality spend Mr art.");
 
-INSERT INTO tbl_QUESTION(student_id, course_id, content) VALUES (1, 1, "Than market great new life. Best push boy road. Author ground front good above truth nature quickly.");
+INSERT INTO tbl_QUESTION(student_id, course_id, content) VALUES (9, 4, "Than market great new life. Best push boy road. Author ground front good above truth nature quickly.");
 
-INSERT INTO tbl_QUESTION(student_id, course_id, content) VALUES (2, 1, "Very economic interview school consumer. Behavior morning source teach above seat drive hand.");
+INSERT INTO tbl_QUESTION(student_id, course_id, content) VALUES (10, 4, "Very economic interview school consumer. Behavior morning source teach above seat drive hand.");
 
-INSERT INTO tbl_QUESTION(student_id, course_id, content) VALUES (2, 1, "Wide all campaign key be. Education chance enter at call pay.");
+INSERT INTO tbl_QUESTION(student_id, course_id, content) VALUES (10, 9, "Wide all campaign key be. Education chance enter at call pay.");
 
 -- SELECT * FROM tbl_QUESTION ORDER BY id;
-
 -- 													===== ANSWER =====
-INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (1, 3, "Activity body natural myself foot. Main debate if last wide service. Son lot study forward help use pretty consider.");
+INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (1, 4, "Activity body natural myself foot. Main debate if last wide service. Son lot study forward help use pretty consider.");
 
-INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (1, 1, "Second ok say our process tell public.");
+INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (2, 1, "Second ok say our process tell public.");
 
-INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (2, 2, "Sometimes music economic play large second. Five move concern series.");
+INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (3, 2, "Sometimes music economic play large second. Five move concern series.");
 
-INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (2, 6, "Where any thank. Nice interview them program change official even company. Dark field protect recently.");
+INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (4, 1, "Where any thank. Nice interview them program change official even company. Dark field protect recently.");
 
-INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (3, 7, "Politics morning spend could book style popular force.");
+INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (5, 4, "Politics morning spend could book style popular force.");
 
-INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (3, 1, "Father let listen religious board yard government. Town want effort mention good. Event as second more how son.");
+INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (6, 3, "Father let listen religious board yard government. Town want effort mention good. Event as second more how son.");
 
 INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (7, 2, "Young side event result position author. Manage main only truth trouble board. Century woman training fall but light attack.");
 
-INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (8, 3, "Natural glass other. Design clear hold others ball travel picture. Offer with hundred shoulder.");
+INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (8, 1, "Natural glass other. Design clear hold others ball travel picture. Offer with hundred shoulder.");
 
 INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (9, 1, "Up responsibility political office ok top. Face surface owner put. Deal box method medical whom generation fish.");
 
-INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (10, 2, "Keep development party evening impact fear. Health exactly today time expect.");
+INSERT INTO tbl_ANSWER(question_id, user_id, content) VALUES (10, 5, "Keep development party evening impact fear. Health exactly today time expect.");
 
 -- SELECT * FROM tbl_ANSWER ORDER BY id;
 
@@ -680,6 +842,10 @@ INSERT INTO tbl_SHOPPING_CART_COURSE(shopping_cart_id, course_id) VALUES (3, 5);
 INSERT INTO tbl_SHOPPING_CART_COURSE(shopping_cart_id, course_id) VALUES (4, 2);
 
 INSERT INTO tbl_SHOPPING_CART_COURSE(shopping_cart_id, course_id) VALUES (5, 6);
+
+INSERT INTO tbl_SHOPPING_CART_COURSE(shopping_cart_id, course_id) VALUES (6, 1);
+
+INSERT INTO tbl_SHOPPING_CART_COURSE(shopping_cart_id, course_id) VALUES (6, 2);
 
 INSERT INTO tbl_SHOPPING_CART_COURSE(shopping_cart_id, course_id) VALUES (6, 3);
 

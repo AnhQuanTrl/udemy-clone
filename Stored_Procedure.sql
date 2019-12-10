@@ -291,7 +291,7 @@ BEGIN
 	FROM
 		tbl_COUPON
 	WHERE 
-		is_primary=TRUE AND expired_date < NOW();
+		is_primary=TRUE AND expired_date > NOW();
 	
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET v_done=TRUE;
 	OPEN cursorForCoupon;
@@ -312,12 +312,12 @@ $$
 
 CREATE EVENT IF NOT EXISTS expiredEvent
 ON SCHEDULE
-EVERY 1 HOUR
+EVERY 30 SECOND
 COMMENT 'Coupon expired'
 DO
 BEGIN
 	CALL checkPrimaryCoupon();
-	DELETE FROM tbl_COUPON WHERE expired_date > NOW();
+	DELETE FROM tbl_COUPON WHERE expired_date < NOW();
 END
 $$
 
