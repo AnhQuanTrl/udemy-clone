@@ -27,9 +27,9 @@ CREATE PROCEDURE loginUser(
     arg_password VARCHAR(256)
 )
 BEGIN
-	SELECT id,email
+	SELECT *
     FROM tbl_USER
-    WHERE email=arg_email AND passowrd=SHA2(arg_password,256);
+    WHERE email=arg_email AND password=SHA2(arg_password,256);
 END
 
 $$
@@ -62,10 +62,10 @@ BEGIN
         arg_sub_category_id);
 	SET last_course_id=LAST_INSERT_ID();
     INSERT INTO tbl_TEACH
-	VALUES (arg_owner_id, last_course_id, DEFAULT(tbl_TEACH.permission), DEFAULT(tbl_TEACH.share));
+	VALUES (arg_owner_id, last_course_id, DEFAULT(tbl_TEACH.permission), 100.00);
    
     IF arg_topic IS NOT NULL THEN
-		DROP TEMPORARY TABLE topic_value;
+		DROP TEMPORARY TABLE IF EXISTS topic_value;
 		CREATE TEMPORARY TABLE topic_value(val VARCHAR(1024));
 		SET @sql = CONCAT("INSERT INTO topic_value VALUES ('", REPLACE(arg_topic,",","'),('"), "');");
 		PREPARE stmt FROM @sql;

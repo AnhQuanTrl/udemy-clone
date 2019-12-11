@@ -23,7 +23,7 @@ CREATE TRIGGER trg_deleteCourse
 BEFORE DELETE
 ON tbl_COURSE FOR EACH ROW
 BEGIN
-	IF EXISTS (SELECT * FROM tbl_ENROLL WHERE course_id=OLD.id AND is_archive=FALSE) THEN
+	IF EXISTS (SELECT * FROM tbl_ENROLL WHERE course_id=OLD.id AND is_archived=FALSE) THEN
 		SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'Can not delete. Some users still enroll and has not yet archived';
 	END IF;
@@ -52,9 +52,8 @@ ON tbl_TEACH FOR EACH ROW
 BEGIN
 	SET @total_share = (SELECT SUM(share) FROM tbl_TEACH WHERE course_id=NEW.course_id);
     IF @total_share > 100.00 THEN
-		UPDATE tbl_TEACH
-        SET share=100.00 * (share / @total_share)
-        WHERE course_id = NEW.course_id;
+		SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT='Total share cannot be above 100.00';
 	END IF;
     IF NEW.permission | b'01111111' = b'01111111' AND (NEW.permission & 
 		b'00001000' = b'00001000' OR NEW.permission & b'00000100' = b'00000100') THEN

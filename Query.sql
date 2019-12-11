@@ -19,7 +19,7 @@ FROM tbl_CATEGORY AS tc, tbl_SUBCATEGORY AS ts
 WHERE tc.id = ts.category_id;
 
 -- Liet ke toan bo COURSE nam trong SUBCATEGORY co name = 'Web Development' va co TOPIC la 'CSS' 						$$$ (3)
-SELECT tc.id, tc.main_title
+EXPLAIN SELECT tc.id, tc.main_title
 FROM tbl_SUBCATEGORY AS ts, tbl_COURSE AS tc, tbl_COURSE_TOPIC AS tct
 WHERE 
 	ts.name = 'Web Development'
@@ -53,7 +53,8 @@ WHERE
 	AND tu.id = te.user_id;
 	
 -- Liet ke nhung INSTRUCTOR ma TEACH COURSE co main_title = "The Web Developer Bootcamp"								$$$ (7)
-SELECT tu.*
+CREATE INDEX mt ON tbl_COURSE(main_title);
+EXPLAIN SELECT tu.*
 FROM tbl_USER AS tu, tbl_TEACH AS tt, tbl_COURSE AS tc
 WHERE
 	tc.main_title = "The Web Developer Bootcamp"
@@ -72,7 +73,8 @@ WHERE
 
 -- Liet ke nhung QUESTION duoc hoi boi USER co first_name = "Lam", last_name = "DH" 
 -- va duoc hoi trong COURSE co main_title = "The Web Developer Bootcamp" 												$$$ (9)
-SELECT tq.*
+CREATE INDEX uname ON tbl_USER(last_name, first_name);
+EXPLAIN SELECT tq.*
 FROM tbl_QUESTION AS tq, tbl_USER AS tu, tbl_COURSE AS tc
 WHERE 
 	tq.student_id = tu.id 
@@ -203,6 +205,7 @@ WHERE
 GROUP BY t.topic
 ORDER BY popularity
 LIMIT 10;
+
 
 -- Lay so luong STUDENT da ENROLL vao cac COURSE thuoc cac CATEGORY tuong ung 											$$$ (3)
 SELECT cate.name, COUNT(DISTINCT e.user_id)

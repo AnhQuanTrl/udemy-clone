@@ -737,8 +737,10 @@ INSERT INTO tbl_FINISH(user_id, item_id, course_id) VALUES(10, 37, 9);
 -- SELECT * FROM tbl_MESSAGE ORDER BY from_id;
 
 -- 													===== TEACH =====
-INSERT INTO tbl_TEACH(instructor_id, course_id) VALUES (3, 2);
-
+INSERT INTO tbl_TEACH(instructor_id, course_id, permission) VALUES (3, 2, b'11111111');
+INSERT INTO tbl_TEACH(instructor_id, course_id, permission) VALUES (5, 2, b'11111111');
+UPDATE tbl_TEACH SET share=50.00, permission=b'11111111' WHERE instructor_id=2;
+UPDATE tbl_TEACH SET share=50.00, permission=b'11111111' WHERE instructor_id=5;
 -- SELECT * FROM tbl_TEACH ORDER BY instructor_id;
 
 -- 													===== QUESTION =====
