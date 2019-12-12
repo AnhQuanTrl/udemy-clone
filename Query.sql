@@ -19,7 +19,7 @@ FROM tbl_CATEGORY AS tc, tbl_SUBCATEGORY AS ts
 WHERE tc.id = ts.category_id;
 
 -- Liet ke toan bo COURSE nam trong SUBCATEGORY co name = 'Web Development' va co TOPIC la 'CSS' 						$$$ (3)
-EXPLAIN SELECT tc.id, tc.main_title
+SELECT tc.id, tc.main_title
 FROM tbl_SUBCATEGORY AS ts, tbl_COURSE AS tc, tbl_COURSE_TOPIC AS tct
 WHERE 
 	ts.name = 'Web Development'
