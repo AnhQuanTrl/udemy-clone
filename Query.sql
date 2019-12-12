@@ -71,8 +71,7 @@ WHERE
 
 -- Liet ke nhung QUESTION duoc hoi boi USER co first_name = "Lam", last_name = "DH" 
 -- va duoc hoi trong COURSE co main_title = "The Web Developer Bootcamp" 												$$$ (9)
-CREATE INDEX uname ON tbl_USER(last_name, first_name);
-EXPLAIN SELECT tq.*
+SELECT tq.*
 FROM tbl_QUESTION AS tq, tbl_USER AS tu, tbl_COURSE AS tc
 WHERE 
 	tq.student_id = tu.id 
