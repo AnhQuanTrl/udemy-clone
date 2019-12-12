@@ -45,7 +45,7 @@ CREATE PROCEDURE insertCourse(
     IN arg_welcome_message TEXT,
     IN owner_email VARCHAR(256),
     IN sub_category_name VARCHAR(256),
-	IN arg_topic VARCHAR(256) #"'topic 1', 'topic 2'"
+	IN arg_topic VARCHAR(256) #"topic 1, topic 2"
 )
 BEGIN
 	DECLARE arg_owner_id, arg_sub_category_id, last_course_id INT UNSIGNED;

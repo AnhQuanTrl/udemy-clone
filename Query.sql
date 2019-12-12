@@ -2,15 +2,15 @@ USE DBS_Assignment;
 
 -- 																QUERIES FROM (AT LEAST) 2 TABLES
 -- Liet ke nhung COURSE thuoc TOPIC co topic = "HTML" va topic = "CSS" 													$$$ (1)
-SELECT *
+EXPLAIN SELECT *
 FROM tbl_COURSE AS tc
 WHERE 
 	EXISTS(
-		SELECT * FROM tbl_COURSE_TOPIC AS tct WHERE tc.id = tct.course_id AND tct.topic = 'HTML'
+		SELECT * FROM tbl_COURSE_TOPIC AS tct WHERE tct.course_id=tc.id AND tct.topic = 'HTML'
 	) 
 	AND 
 	EXISTS(
-		SELECT * FROM tbl_COURSE_TOPIC AS tct WHERE tc.id = tct.course_id AND tct.topic = 'CSS'
+		SELECT * FROM tbl_COURSE_TOPIC AS tct WHERE tct.course_id=tc.id AND tct.topic = 'CSS'
 	);
 
 -- Liet ke toan bo CATEGORY, SUBCATEGORY tuong ung 																		$$$ (2)
@@ -53,8 +53,7 @@ WHERE
 	AND tu.id = te.user_id;
 	
 -- Liet ke nhung INSTRUCTOR ma TEACH COURSE co main_title = "The Web Developer Bootcamp"								$$$ (7)
-CREATE INDEX mt ON tbl_COURSE(main_title);
-EXPLAIN SELECT tu.*
+SELECT tu.*
 FROM tbl_USER AS tu, tbl_TEACH AS tt, tbl_COURSE AS tc
 WHERE
 	tc.main_title = "The Web Developer Bootcamp"
@@ -66,8 +65,7 @@ WHERE
 SELECT tu.*
 FROM tbl_USER AS tu, tbl_ENROLL AS te, tbl_COURSE AS tc
 WHERE 
-	tu.student_flag = TRUE 
-	AND te.user_id = tu.id 
+	te.user_id = tu.id 
 	AND te.course_id = tc.id 
 	AND tc.main_title = "Complete Python Bootcamp: Go from zero to hero in Python 3";
 
@@ -97,12 +95,11 @@ WHERE
 SELECT *
 FROM tbl_COURSE_TOPIC
 WHERE course_id IN (
-	SELECT tc.id 
-	FROM tbl_COURSE AS tc, tbl_USER AS tu, tbl_TEACH AS tt
+	SELECT tt.id
+	FROM tbl_USER AS tu, tbl_TEACH AS tt
 	WHERE 
 		tu.first_name = "Cuong" 
 		AND tu.last_name = "Vuong" 
-		AND tt.course_id = tc.id 
 		AND tt.instructor_id = tu.id
 );
 
