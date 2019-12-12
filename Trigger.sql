@@ -55,6 +55,10 @@ BEGIN
 		SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT='Total share cannot be above 100.00';
 	END IF;
+    IF EXISTS(SELECT * FROM tbl_COURSE where owner_id=NEW.instructor_id) AND NEW.permission != b'11111111' THEN
+		SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Instructor owner cannot have their permission changed';
+    END IF;
     IF NEW.permission | b'01111111' = b'01111111' AND (NEW.permission & 
 		b'00001000' = b'00001000' OR NEW.permission & b'00000100' = b'00000100') THEN
         SIGNAL SQLSTATE '45000'
@@ -92,7 +96,7 @@ CREATE TRIGGER trg_answer
 BEFORE INSERT
 ON tbl_ANSWER FOR EACH ROW
 BEGIN 
-	IF NOT EXISTS (SELECT * FROM tbl_ENROLL e WHERE e.user_id = NEW.user_id) THEN
+	IF NOT EXISTS (SELECT * FROM tbl_ENROLL e, tbl_QUESTION q WHERE e.user_id = NEW.user_id AND q.id=NEW.question_id AND q.course_id=e.course_id) THEN
 		SET @course_id = (SELECT course_id FROM tbl_QUESTION WHERE id=NEW.question_id);
 		IF NOT EXISTS (SELECT * FROM tbl_TEACH WHERE course_id=@course_id AND instructor_id=NEW.user_id) THEN
 			SIGNAL SQLSTATE '45000'

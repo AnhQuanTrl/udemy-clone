@@ -132,6 +132,7 @@ CREATE TABLE IF NOT EXISTS tbl_SECTION (
 	course_id 	INT UNSIGNED NOT NULL,
     name VARCHAR(256) NOT NULL,
 	section_order INT UNSIGNED NOT NULL,
+    UNIQUE(course_id, name),
 	PRIMARY KEY (section_id, course_id),
 	FOREIGN KEY (course_id) REFERENCES tbl_COURSE(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -159,7 +160,7 @@ CREATE TABLE IF NOT EXISTS tbl_VIDEO (
 	item_id				INT UNSIGNED NOT NULL,
 	course_id			INT UNSIGNED NOT NULL,
 	is_previewable		BOOL NOT NULL DEFAULT FALSE,
-	duration			DECIMAL(5,2) NOT NULL DEFAULT 0.00,
+	duration			DECIMAL(5,2) NOT NULL DEFAULT 0.00,	
 	url					VARCHAR(256) NOT NULL,
 	
 	PRIMARY KEY (item_id, course_id),
@@ -329,8 +330,7 @@ CREATE TABLE IF NOT EXISTS tbl_ENROLL (
 	PRIMARY KEY (user_id, course_id),
     CONSTRAINT constraint_rating CHECK (rating > 0 AND rating <= 5),
 	FOREIGN KEY (user_id) REFERENCES tbl_USER(id) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (course_id) REFERENCES tbl_COURSE(id) ON UPDATE CASCADE #ON DELETE RESTRICT 
-    #prevent teacher from deleting course that still has user enroll
+	FOREIGN KEY (course_id) REFERENCES tbl_COURSE(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 -- 																TEACH
 CREATE TABLE IF NOT EXISTS tbl_TEACH (
